@@ -1,0 +1,44 @@
+.m-blocknote {
+   width: 100%;
+
+   .bn-container[data-theming-css-demo] .bn-editor * {
+      overflow: auto;
+      height: 100%;
+      a {
+         cursor: pointer;
+      }
+
+      ::selection {
+         background: var(--Brand-Golden-200, #f8e7ab);
+      }
+   }
+
+   .bn-container[data-theming-css-demo] .bn-editor {
+      padding: 0;
+      background-color: transparent;
+   }
+
+   .bn-container[data-theming-css-demo] .bn-inline-content {
+      font-size: 14px;
+   }
+
+   .bn-container[data-theming-css-demo]
+      .bn-block-content[data-is-empty-and-focused]
+      .bn-inline-content:has(> .ProseMirror-trailingBreak:only-child)::before {
+      content: 'Ajoutez des notes ici' !important;
+      font-style: normal;
+   }
+
+   .bn-block-content[data-content-type='bulletListItem'] {
+      gap: 12px;
+   }
+
+   .bn-container[data-theming-css-demo] .bn-toolbar {
+      background: var(--Neutral-Slate-950, #020617);
+   }
+
+   .bn-container[data-theming-css-demo] .bn-toolbar * {
+      background: var(--Neutral-Slate-950, #020617);
+      color: #fff;
+   }
+}

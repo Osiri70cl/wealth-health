@@ -1,0 +1,191 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 32px;
+}
+
+.title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--Neutral-Slate-600);
+  margin-bottom: 16px;
+}
+
+.switch {
+  display: flex;
+  align-items: center;
+  background-color: var(--Neutral-Slate-200);
+  height: 54px;
+  width: fit-content;
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+
+  .active,
+  .inactive {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-wrap: nowrap;
+    height: 100%;
+    width: 50%;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: black;
+    cursor: pointer;
+  }
+
+  .inactive a {
+    color: black !important;
+    &:hover {
+      color: var(--Neutral-Black-Alpha-90) !important;
+    }
+  }
+  .active {
+    background-color: #fff;
+    &:hover {
+      background-color: var(--Neutral-White-Alpha-70);
+    }
+  }
+}
+
+$border-color: #ddd;
+$background-color: #f2f2f2;
+$hover-color: #f9f9f9;
+$active-sort-color: #007bff;
+
+.employeeTable {
+  font-family: Arial, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.tableControls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 20px;
+
+  .search {
+    input {
+      margin-left: 5px;
+    }
+  }
+}
+
+.table {
+  th,
+  td {
+    &:focus {
+      outline: 2px solid var(--Neutral-Slate-500);
+      outline-offset: -2px;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--Neutral-Slate-500);
+      outline-offset: -2px;
+    }
+  }
+}
+
+.headerContent {
+  cursor: pointer;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+
+  th,
+  td {
+    border: 1px solid $border-color;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: $background-color;
+    cursor: pointer;
+
+    .headerContent {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sortIcons {
+      display: inline-flex;
+      flex-direction: column;
+      margin-left: 5px;
+
+      .sortIcon {
+        font-size: 0.8em;
+        line-height: 1;
+        opacity: 0.3;
+
+        &.active {
+          opacity: 1;
+          color: $active-sort-color;
+        }
+      }
+    }
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+
+  .pageButtons {
+    display: flex;
+    align-items: center;
+
+    button {
+      margin: 0 5px;
+      padding: 5px 10px;
+      background-color: $background-color;
+      border: 1px solid $border-color;
+      cursor: pointer;
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  span {
+    font-size: 14px;
+    margin: 0 5px;
+  }
+}
+
+.showEntries {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: 8px;
+}
+
+.select {
+  background-color: white;
+  padding: 6px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}

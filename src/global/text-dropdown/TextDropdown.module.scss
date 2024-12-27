@@ -1,0 +1,24 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 12px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+
+  li {
+    width: 100%;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    &:hover {
+      background-color: var(--Neutral-Slate-100);
+    }
+  }
+}

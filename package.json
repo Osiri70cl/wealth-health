@@ -1,0 +1,33 @@
+{
+  "name": "wealth-health",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbo",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
+    "@osiris70cl/simple-react-date-picker": "^1.2.6",
+    "@phosphor-icons/react": "^2.1.6",
+    "@tanstack/react-table": "^8.20.5",
+    "dayjs": "^1.11.11",
+    "next": "14.2.7",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-hook-form": "^7.52.0",
+    "sass": "^1.77.5",
+    "zustand": "^4.5.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.16.2",
+    "@types/react": "^18.3.4",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.4",
+    "eslint-plugin-react": "^7.35.0",
+    "typescript": "^5.5.4"
+  }
+}
