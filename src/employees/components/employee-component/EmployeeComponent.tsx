@@ -15,6 +15,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 
 const columns: ColumnDef<Employee>[] = [
@@ -29,6 +30,29 @@ const columns: ColumnDef<Employee>[] = [
   {
     header: "Date de début de contrat",
     accessorKey: "jobStartDate",
+    cell: ({ getValue }) => {
+      const value = getValue();
+      let date = dayjs(value);
+      if (!date.isValid()) {
+        const [day, month, year] = value.split("-");
+        date = dayjs(`${year}-${month}-${day}`);
+      }
+      return date.isValid() ? date.format("DD/MM/YYYY") : value;
+    },
+    sortingFn: (rowA, rowB) => {
+      const a = rowA.original.jobStartDate;
+      const b = rowB.original.jobStartDate;
+
+      const dateA = dayjs(a).isValid()
+        ? dayjs(a)
+        : dayjs(`${a.split("-")[2]}-${a.split("-")[1]}-${a.split("-")[0]}`);
+
+      const dateB = dayjs(b).isValid()
+        ? dayjs(b)
+        : dayjs(`${b.split("-")[2]}-${b.split("-")[1]}-${b.split("-")[0]}`);
+
+      return dateA.unix() - dateB.unix();
+    },
   },
   {
     header: "Service",
@@ -37,6 +61,29 @@ const columns: ColumnDef<Employee>[] = [
   {
     header: "Date de naissance",
     accessorKey: "birthDate",
+    cell: ({ getValue }) => {
+      const value = getValue();
+      let date = dayjs(value);
+      if (!date.isValid()) {
+        const [day, month, year] = value.split("-");
+        date = dayjs(`${year}-${month}-${day}`);
+      }
+      return date.isValid() ? date.format("DD/MM/YYYY") : value;
+    },
+    sortingFn: (rowA, rowB) => {
+      const a = rowA.original.birthDate;
+      const b = rowB.original.birthDate;
+
+      const dateA = dayjs(a).isValid()
+        ? dayjs(a)
+        : dayjs(`${a.split("-")[2]}-${a.split("-")[1]}-${a.split("-")[0]}`);
+
+      const dateB = dayjs(b).isValid()
+        ? dayjs(b)
+        : dayjs(`${b.split("-")[2]}-${b.split("-")[1]}-${b.split("-")[0]}`);
+
+      return dateA.unix() - dateB.unix();
+    },
   },
   {
     header: "Rue",
@@ -60,13 +107,27 @@ const EmployeeComponent = () => {
   const [globalFilter, setGlobalFilter] = useState("");
   const { employees, getEmployees } = useEmployeeStore();
   const [data, setData] = useState(MOCKDATA);
+  console.log(data);
 
   useEffect(() => {
-    if (employees.length > 0) {
-      const uniqueEmployees = [...MOCKDATA, ...employees].filter(
-        (employee, index, self) =>
-          index === self.findIndex((e) => e.id === employee.id)
+    if (employees && employees.length > 0) {
+      const normalizedEmployees = employees.map((emp, index) => ({
+        ...emp,
+        id: emp.id || `new-${index + 1}`,
+      }));
+
+      const uniqueEmployees = [...MOCKDATA, ...normalizedEmployees].reduce(
+        (acc, current) => {
+          const x = acc.find((item) => item.id === current.id);
+          if (!x) {
+            return acc.concat([current]);
+          } else {
+            return acc;
+          }
+        },
+        []
       );
+
       setData(uniqueEmployees);
     }
   }, [employees]);

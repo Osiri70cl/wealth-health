@@ -18,9 +18,11 @@ const HomeComponent = () => {
   const { setHandleStatusModal } = useModalStore();
   const addEmployee = useEmployeeStore((state) => state.addEmployee);
   const methods = useForm();
-  const { handleSubmit, setValue, register } = methods;
-  const [birthDate, setBirthDate] = useState(dayjs().format());
-  const [jobStartDate, setJobStartDate] = useState(dayjs().format());
+  const { handleSubmit, setValue, register, reset } = methods;
+  const [birthDate, setBirthDate] = useState(dayjs().format("DD-MM-YYYY"));
+  const [jobStartDate, setJobStartDate] = useState(
+    dayjs().format("DD-MM-YYYY")
+  );
   const [serviceDropdown, setServiceDropdown] = useState(false);
 
   const openModal = () => {
@@ -56,7 +58,6 @@ const HomeComponent = () => {
   };
 
   const handleDataJobStart = (data: any) => {
-    console.log(data);
     setJobStartDate(dayjs(data).format());
   };
 
@@ -72,13 +73,15 @@ const HomeComponent = () => {
   const serviceRef = useOutsideClick(handleOpenService);
 
   const submit = (data: any) => {
+    const formattedBirthDate = dayjs(birthDate).format("DD-MM-YYYY");
     const completeData = {
       ...data,
-      birthDate,
+      birthDate: formattedBirthDate,
       jobStartDate,
     };
     addEmployee(completeData);
     openModal();
+    reset();
   };
 
   const renderService = useMemo(() => {
