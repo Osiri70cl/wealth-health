@@ -7,7 +7,6 @@ const INTIAL_SINGLE_PICKER = {
   current_day_background: "#EEC32D",
   day_hover_background: "transparent",
   initial_date: `${dayjs().format("YYYY-MM-DD")}`,
-  dayjsLocale: "fr",
 };
 
 export default INTIAL_SINGLE_PICKER;

@@ -19,10 +19,8 @@ const HomeComponent = () => {
   const addEmployee = useEmployeeStore((state) => state.addEmployee);
   const methods = useForm();
   const { handleSubmit, setValue, register, reset } = methods;
-  const [birthDate, setBirthDate] = useState(dayjs().format("DD-MM-YYYY"));
-  const [jobStartDate, setJobStartDate] = useState(
-    dayjs().format("DD-MM-YYYY")
-  );
+  const [birthDate, setBirthDate] = useState(dayjs());
+  const [jobStartDate, setJobStartDate] = useState(dayjs());
   const [serviceDropdown, setServiceDropdown] = useState(false);
 
   const openModal = () => {
