@@ -77,18 +77,11 @@ const DatePicker = ({
     }
   };
 
-  // const renderButton = useMemo(() => {
-  //   return (
-
-  //   );
-  // }, [startDate, endDate, singlePicker]);
-
   const handleClose = () => {
     setDropdown(false);
   };
 
   const renderDropdown = useMemo(() => {
-    console.log("dropdown", initialDataPackage);
     if (dropdown) {
       return (
         <>

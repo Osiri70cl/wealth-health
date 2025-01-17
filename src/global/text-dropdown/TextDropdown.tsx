@@ -1,10 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import styles from "./TextDropdown.module.scss";
 
 type Props = {
-  content: string[];
+  content: any[];
   handleSelectedItem: (item: string) => void;
 };
 

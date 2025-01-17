@@ -21,7 +21,6 @@ const EmployeeComponent = () => {
   const [globalFilter, setGlobalFilter] = useState("");
   const { employees } = useEmployeeStore();
   const [data, setData] = useState(MOCKDATA);
-  console.log(data);
 
   useEffect(() => {
     if (employees && employees.length > 0) {
@@ -32,7 +31,7 @@ const EmployeeComponent = () => {
 
       const uniqueEmployees = [...MOCKDATA, ...normalizedEmployees].reduce(
         (acc, current) => {
-          const x = acc.find((item) => item.id === current.id);
+          const x = acc.find((item: any) => item.id === current.id);
           if (!x) {
             return acc.concat([current]);
           } else {

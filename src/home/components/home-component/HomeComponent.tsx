@@ -19,12 +19,11 @@ const HomeComponent = () => {
   const addEmployee = useEmployeeStore((state) => state.addEmployee);
   const methods = useForm();
   const { handleSubmit, setValue, register, reset } = methods;
-  const [birthDate, setBirthDate] = useState(dayjs());
-  const [jobStartDate, setJobStartDate] = useState(dayjs());
+  const [birthDate, setBirthDate] = useState<any>(dayjs());
+  const [jobStartDate, setJobStartDate] = useState<any>(dayjs());
   const [serviceDropdown, setServiceDropdown] = useState(false);
 
   const openModal = () => {
-    console.log("open modal");
     setHandleStatusModal({
       status: true,
       children: <div>Félicitation, cette personne a bien été créé</div>,
@@ -59,7 +58,7 @@ const HomeComponent = () => {
     setJobStartDate(dayjs(data).format());
   };
 
-  const handleSelectedItem = (item: string) => {
+  const handleSelectedItem = (item: any) => {
     setValue("service", item.name);
     setServiceDropdown(false);
   };
@@ -72,14 +71,25 @@ const HomeComponent = () => {
 
   const submit = (data: any) => {
     const formattedBirthDate = dayjs(birthDate).format("DD-MM-YYYY");
+    const birthYear = dayjs(birthDate).year();
+
     const completeData = {
       ...data,
       birthDate: formattedBirthDate,
       jobStartDate,
     };
-    addEmployee(completeData);
-    openModal();
-    reset();
+
+    if (birthYear > 2009) {
+      setHandleStatusModal({
+        status: true,
+        children: <div>L'utilisateur doit avoir au moins 16 ans</div>,
+        title: "Erreur",
+      });
+    } else {
+      addEmployee(completeData);
+      openModal();
+      reset();
+    }
   };
 
   const renderService = useMemo(() => {
